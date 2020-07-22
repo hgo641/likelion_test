@@ -1,0 +1,14 @@
+<header>
+    <h1>일베용어사전</h1>
+</header>
+
+<br>
+<a href="/new">글쓰기</a>
+
+<p>단어 뜻 등록일자</p>
+{% for blog in blogs.all %}
+    <h1><a href="{% url 'detail' blog.id %}">{{blog.title}}</a></h1>
+    <p>{{blog.body}}</p>
+    <p>작성시간 : {{blog.created_at}}</p>
+    
+{% endfor %}

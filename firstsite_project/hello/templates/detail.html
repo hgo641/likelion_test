@@ -1,0 +1,49 @@
+<!--detail.html-->
+
+<h1>{{onepost.title}}</h1>
+<p>{{onepost.created_at}}</p>
+
+
+<a href="{% url 'home' %}">홈으로</a>
+<a href="{% url 'postedit' onepost.id %}">수정</a>
+<a href="{% url 'postdelete' onepost.id %}">삭제</a>
+<p>--------------------------------</p>
+<p>{{onepost.body}}</p>
+
+    
+    <!-- templates에 detail.html 추가 -->
+
+  <form action="{% url 'commentcreate' onepost.id %}" method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="comment_content">댓글</label><br>
+        <input type="text" name="comment_content" id="comment_content">
+    </div>
+    <button type="submit">댓글쓰기</button>
+  </form>
+
+  {% for c in comments %}
+  <div>
+    <p>{{ c.content }}</p>
+    <p>{{ c.created_at }}</p>
+  </div>
+  {%endfor%}
+
+    
+    <!-- templates에 detail.html 추가 -->
+
+    <form action="{% url 'commentcreate' onepost.id %}" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="comment_content">댓글</label><br>
+            <input type="text" name="comment_content" id="comment_content">
+        </div>
+        <button type="submit">댓글쓰기</button>
+      </form>
+    
+      {% for c in comments %}
+      <div>
+        <p>{{ c.content }}</p>
+        <p>{{ c.created_at }}</p>
+      </div>
+      {%endfor%}
